@@ -33,12 +33,12 @@ public:
                                  "text TEXT,"
                                  "summary TEXT,"
                                  "resourceId INT,"
-                                 "resourcePath TEXT)";
+                                 "resourcePath TEXT);";
         exit = sqlite3_exec(DB, query_text.c_str(), NULL, NULL, &messaggeError);
         // TODO: Error message output
 
         std::string query_resouce = "CREATE TABLE IF NOT EXISTS resource("
-                                    "ID INT PRIMARY KEY  NOT NULL,"
+                                    "ID INTEGER PRIMARY KEY  AUTOINCREMENT,"
                                     "type TEXT  NOT NULL,"
                                     "description TEXT);";
         exit = sqlite3_exec(DB, query_resouce.c_str(), NULL, NULL, &messaggeError);
@@ -76,12 +76,6 @@ private:
     {
         std::vector<Text>* _data = static_cast<std::vector<Text>*>(data);
         _data->push_back({std::stoi(row[0]), row[1], row[2], row[3], std::stoi(row[4]), row[5]});
-        
-        // for (int i = 0; i < numOfColumns; i++)
-        // {
-        //     std::cout << row[i];
-        // }
-        // std::cout << std::endl;
 
         return 0;
     }
